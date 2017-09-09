@@ -17,6 +17,6 @@ public class ExitCommandRunnerTest {
 	@Test
 	public void testExecute(){
 		CommandRunnerResponse response = exitRunner.execute();
-		Assert.assertEquals(CommandRunnerResponse.SUCCESS, response);
+		Assert.assertEquals(CommandRunnerResponse.QUIT, response);
 	}
 }
