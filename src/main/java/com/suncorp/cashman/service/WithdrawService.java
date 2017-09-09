@@ -13,17 +13,20 @@ public class WithdrawService implements IWithdrawService {
 	@Autowired
 	IAtmLockerService atmLockerService;
 	
-	public void withdrawAmount(double amount) throws CashmanValidationException {
+	public boolean withdrawAmount(double amount) throws CashmanValidationException {
 		String ccySymbol = atmLockerService.getAcceptedCurrency();
 		validateAmount(ccySymbol, amount);
 		Map<Denomination, Integer> withdrawMap = atmLockerService.calculatMapToWithdraw(amount);
 //		System.out.println(withdrawMap);
 		if (CashmanUtils.isEmpty(withdrawMap)) {
 			System.out.println("We are Sorry, It is not possible for us to despense amount = " + ccySymbol + amount + "!!");
+			return false;
 		} else if (atmLockerService.deductDenominationCount(withdrawMap)) {
 			System.out.println("Please collect your amount = " + ccySymbol + amount);
+			return true;
 		} else {
 			System.out.println("Not engough cash in ATM for amount = " + amount + ", try again with less amount!!");
+			return false;
 		}
 	}
 

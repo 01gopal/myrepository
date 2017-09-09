@@ -8,7 +8,6 @@ import java.util.Set;
 import org.reflections.Reflections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.stereotype.Component;
 
 import com.suncorp.cashman.command.CashmanCommand;
 import com.suncorp.cashman.command.CashmanCommandRunner;

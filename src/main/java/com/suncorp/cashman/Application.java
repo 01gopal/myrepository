@@ -6,9 +6,9 @@ import com.suncorp.cashman.cache.CashmanRunnerCommandCache;
 import com.suncorp.cashman.command.CashmanCommandRunner;
 import com.suncorp.cashman.command.CommandRunnerResponse;
 import com.suncorp.cashman.config.CashmanConfig;
-import com.suncorp.cashman.exceptions.CashmanExecutionException;
 import com.suncorp.cashman.runner.DefaultInitializationCommandRunner;
 import com.suncorp.cashman.runner.HelpCommandRunner;
+import com.suncorp.cashman.runner.ReportCommandRunner;
 import com.suncorp.cashman.util.CustomerInput;
 
 public class Application {
@@ -16,13 +16,18 @@ public class Application {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(CashmanConfig.class);
 		CashmanRunnerCommandCache cache = context.getBean(CashmanRunnerCommandCache.class);
 		CustomerInput input = context.getBean(CustomerInput.class);
+		String intializationCommand = DefaultInitializationCommandRunner.COMMAND;
+		if (args != null && args.length > 0) {
+			intializationCommand = args[0];
+		}
 		try {
-			CommandRunnerResponse response = executeCommand(DefaultInitializationCommandRunner.COMMAND, cache);
+			CommandRunnerResponse response = executeCommand(intializationCommand, cache);
 			if (response.equals(CommandRunnerResponse.FAILED)) {
 				System.out.println("Unable to initialize ATM, EXIT!!");
 				return;
 			}
 
+			response = executeCommand(ReportCommandRunner.COMMAND, cache);
 			System.out.println("\n:::: Welcome to Suncorp ATM ::::\n");
 			response = executeCommand(HelpCommandRunner.COMMAND, cache);
 			while (response != null && !response.equals(CommandRunnerResponse.QUIT)) {

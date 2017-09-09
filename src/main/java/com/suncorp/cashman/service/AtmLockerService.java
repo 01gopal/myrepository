@@ -64,7 +64,7 @@ public class AtmLockerService implements IAtmLockerService {
 		return true;
 	}
 
-	private boolean isDenominationAvailable(Denomination denomination, Integer count) {
+	public boolean isDenominationAvailable(Denomination denomination, Integer count) {
 		if (denominatonMap.containsKey(denomination)) {
 			if (denominatonMap.get(denomination) >= (count)) {
 				return true;

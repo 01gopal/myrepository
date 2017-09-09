@@ -23,14 +23,16 @@ public class ManualInitializationCommandRunner extends InitializationCommandRunn
 	public CommandRunnerResponse execute() {
 		System.out.println(":::: Suncorp INITIALIZATION, Manual ::::");
 		try {
-			String currencyCode = input.takeCustomerInput("Enter currency code : ");
+			String currencyCode = input.takeCustomerInput("Enter currency code (eg. AUD or USD): ");
 			CurrencyFactory factory = new CurrencyFactory();
 			Currency currency = factory.getCurrency(currencyCode);
 			atmLockerService.setAcceptedCurrency(CashmanUtils.findCurrencySymbol(currencyCode));
 			for (Denomination d : currency.getDenominations()) {
 				String inputCount = input.takeCustomerInput("Enter total number of " + d.getFaceName() + " : " + d.getCurrencySymbol());
 				int count = Integer.parseInt(inputCount);
-				atmLockerService.addDenominationCount(d, count);
+				if (count > 0) {
+					atmLockerService.addDenominationCount(d, count);
+				}
 			}
 			System.out.println(":::: Suncorp INITIALIZATION, COMPLETED ::::");
 		} catch (Exception e) {
