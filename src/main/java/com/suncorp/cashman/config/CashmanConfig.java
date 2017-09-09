@@ -4,9 +4,11 @@ import org.springframework.context.annotation.Bean;
 
 import com.suncorp.cashman.cache.CashmanRunnerCommandCache;
 import com.suncorp.cashman.command.CashmanCommandRunner;
+import com.suncorp.cashman.runner.DefaultInitializationCommandRunner;
 import com.suncorp.cashman.runner.ExitCommandRunner;
 import com.suncorp.cashman.runner.HelpCommandRunner;
 import com.suncorp.cashman.runner.InitializationCommandRunner;
+import com.suncorp.cashman.runner.ManualInitializationCommandRunner;
 import com.suncorp.cashman.runner.ReportCommandRunner;
 import com.suncorp.cashman.runner.WithdrawCommandRunner;
 import com.suncorp.cashman.service.AtmLockerService;
@@ -33,8 +35,12 @@ public class CashmanConfig {
 		return new WithdrawCommandRunner();
 	}
 	@Bean
-	public InitializationCommandRunner initializationCommandRunner() {
-		return new InitializationCommandRunner();
+	public InitializationCommandRunner defaultInitializationCommandRunner() {
+		return new DefaultInitializationCommandRunner();
+	}
+	@Bean
+	public InitializationCommandRunner manualInitializationCommandRunner() {
+		return new ManualInitializationCommandRunner();
 	}
 	@Bean
 	public CashmanRunnerCommandCache cashmanRunnerCommandCache() {

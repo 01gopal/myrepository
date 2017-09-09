@@ -18,7 +18,7 @@ public class CustomerInput implements DisposableBean{
 	}
 
 	private void printMessage(String message) {
-		System.out.printf(message);
+		System.out.printf(">> " + message);
 	}
 
 	public void destroy() throws Exception {

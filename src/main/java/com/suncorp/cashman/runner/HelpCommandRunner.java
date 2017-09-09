@@ -9,11 +9,11 @@ public class HelpCommandRunner implements CashmanCommandRunner {
 	public static final String COMMAND = "HELP";
 
 	public CommandRunnerResponse execute() {
-		System.out.println("::Enter any of the following command::");
-		System.out.println("WITHDRAW - To withdraw amount");
-		System.out.println("REPORT - To print total available currency");
-		System.out.println("HELP - To options again");
-		System.out.println("EXIT - To quit");
+		System.out.println(":::: Suncorp HELP, use any of the commands ::::");
+		System.out.println(">> WITHDRAW - To withdraw amount");
+		System.out.println(">> REPORT - To print total available currency");
+		System.out.println(">> HELP - To options again");
+		System.out.println(">> EXIT - To quit");
 		return CommandRunnerResponse.SUCCESS;
 	}
 }

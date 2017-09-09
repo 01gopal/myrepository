@@ -8,7 +8,7 @@ import com.suncorp.cashman.command.CommandRunnerResponse;
 public class ExitCommandRunner implements CashmanCommandRunner{
 	public static final String COMMAND = "EXIT";
 	public CommandRunnerResponse execute() {
-		System.out.println("EXIT from ATM..");
+		System.out.println("\n:::: THANKS for visiting SunCorp ATM, Have a Nice Day!! ::::\n");
 		return CommandRunnerResponse.QUIT;
 	}
 	

@@ -64,5 +64,10 @@ public class Denomination {
 			return false;
 		return true;
 	}
+	@Override
+	public String toString() {
+		return "Denomination [faceName=" + faceName + ", faceValue=" + faceValue + ", currencyCode=" + currencyCode
+				+ ", currencySymbol=" + currencySymbol + "]";
+	}
 	
 }
